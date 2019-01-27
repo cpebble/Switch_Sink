@@ -1,4 +1,6 @@
-
+dmenu_cmd="dmenu"
+rofi_cmd="rofi -dmenu -p \"select sink\""
+dmenu_cmd=$rofi_cmd
 
 set_default_sink() {
 	echo setting sink $1
@@ -37,7 +39,7 @@ EOF
 #echo "$pythoncode:"
 #hsinkDescriptors="$(pactl list sinks |
 
-sink=$(python -c "$pythoncode" | rofi -dmenu -p "select sink")
+sink=$(python -c "$pythoncode" | $dmenu_cmd)
 sinkindex=$(echo "$sink" | cut -d "|" -f 1)
 echo $sinkindex
 set_default_sink $sinkindex
